@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO</title>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background-color: #0f172a;
+        color: #f8fafc;
+        font-family: system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* مسافة موحدة ونظيفة بين الأقسام */
+      section {
+        margin-bottom: 80px;
+        margin-top: 50px;
+      }
+
+      .navbar {
+        position: sticky;
+        top: 0; 
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px;
+        background-color: #1e293b;
+        border-bottom: 1px solid #334155;
+      }
+
+      .logo {
+        color: #3b82f6;
+        margin: 0;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li a {
+        color: #cbd5e1;
+        cursor: pointer;
+        text-decoration: none;
+        font-size: 15px;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links li:hover a {
+        color: #60a5fa;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 26px;
+        color: #3b82f6;
+        margin-top: 50px;
+        margin-bottom: 30px;
+      }
+
+      /* --- قسم المهارات --- */
+      .skill {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px auto;
+        max-width: 900px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill .section-title {
+        margin-top: 0;
+        margin-bottom: 20px;
+        text-align: left; /* تعديل المحاذاة لليسار */
+        font-size: 20px;
+      }
+
+      .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .skill-card {
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #cbd5e1;
+        transition: all 0.2s ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-3px);
+        border-color: #3b82f6;
+        color: #ffffff;
+        background-color: #1d4ed8;
+      }
+
+      /* --- الشهادات --- */
+      .certificates-section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .cards-slider {
+        display: flex;
+        gap: 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-behavior: smooth;
+        padding: 15px 5px;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      .cards-slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slider-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .slider-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #1e293b;
+        color: #3b82f6;
+        border: 1px solid #334155;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      }
+
+      .slider-btn:hover {
+        background-color: #3b82f6;
+        color: #ffffff;
+        border-color: #3b82f6;
+      }
+
+      .prev-btn { left: -15px; }
+      .next-btn { right: -15px; }
+
+      .card {
+        flex: 0 0 280px;
+        scroll-snap-align: center;
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        text-align: center;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        border-color: #3b82f6;
+      }
+
+      .card img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .card h3 {
+        font-size: 1rem;
+        margin-top: 12px;
+        color: #f8fafc;
+      }
+
+      /* --- المشاريع --- */
+      .projects-section {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .section-title-center {
+        text-align: center;
+        font-size: 26px;
+        color: #3b82f6;
+        margin-bottom: 30px;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .project-card {
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: #3b82f6;
+      }
+
+      .project-card h3 {
+        margin: 0 0 10px 0;
+        color: #f8fafc;
+        font-size: 1.2rem;
+      }
+
+      .project-desc {
+        font-size: 14px;
+        color: #94a3b8;
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+      }
+
+      .tech-stack span {
+        background-color: #0f172a;
+        color: #60a5fa;
+        border: 1px solid #334155;
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 6px;
+      }
+
+      .project-link {
+        color: #3b82f6;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: color 0.2s ease;
+        display: inline-block;
+      }
+
+      .project-link:hover {
+        color: #60a5fa;
+        text-decoration: underline;
+      }
+
+      /* --- قسم التواصل --- */
+      .contact-section {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-group label {
+        color: #cbd5e1;
+        font-size: 14px;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        background-color: #0f172a;
+        border: 1px solid #334155;
+        border-radius: 8px;
+        padding: 12px;
+        color: #f8fafc;
+        font-family: inherit;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+      }
+
+      .submit-btn {
+        background-color: #3b82f6;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        margin-top: 10px;
+      }
+
+      .submit-btn:hover {
+        background-color: #1d4ed8;
+      }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <h2 class="logo">PORTFOLIO</h2>
+  <ul class="nav-links">
+    <li><a href="#about">About me</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="about">
+  <header style="padding: 60px 25px; text-align: center;">
+    <h1 style="font-size: 36px; margin-bottom: 10px;">Hi, I'm Mohamed Khaled, <br> a Web Developer, Data Analyst, and Penetration Tester</h1>
+    <p style="color: #94a3b8; font-size: 18px; max-width: 600px; margin: 0 auto 25px auto;">
+      I combine strong backend engineering, precise data analysis, and offensive security practices to build resilient, intelligent, and highly secure applications.
+    </p>
+  </header>
+</section>
+
+<section id="skills" style="padding: 0 20px;">
+  <div class="skill">
+    <h2 class="section-title">Programming Skills</h2>
+    <div class="skills-container">
+      <div class="skill-card">Python</div>
+      <div class="skill-card">Django / Flask</div>
+      <div class="skill-card">JavaScript</div>
+      <div class="skill-card">HTML / CSS</div>
+      <div class="skill-card">Git & GitHub</div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <h2 class="section-title">Cloud & DevOps</h2>
+    <div class="skills-container">
+      <div class="skill-card">Cloud Computing</div>
+      <div class="skill-card">Oracle</div>
+      <div class="skill-card">Docker</div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <h2 class="section-title">Data Analysis</h2>
+    <div class="skills-container">
+      <div class="skill-card">Excel Advanced</div>
+      <div class="skill-card">SQL</div>
+      <div class="skill-card">Power BI</div>
+    </div>
+  </div>
+
+  <div class="skill">
+    <h2 class="section-title">Penetration Testing</h2>
+    <div class="skills-container">
+      <div class="skill-card">Kali Linux</div>
+      <div class="skill-card">Burp Suite</div>
+      <div class="skill-card">Nmap</div>
+      <div class="skill-card">Metasploit</div>
+    </div>
+  </div>
+</section>
+
+<section id="certificates">
+  <div class="certificates-section">
+    <h2 class="section-title-center">My Certificates</h2>
+    <div class="slider-wrapper">
+      <button class="slider-btn prev-btn" onclick="slideLeft()">&#10094;</button>
+      <div class="cards-slider">
+        <div class="card">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="images/coursera-it.jpg" alt="Coursera IT Support">
+          </a>
+          <h3>Coursera IT Support</h3>
+        </div>
+        <div class="card">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="images/digital-forensics.jpg" alt="Incident Response and Digital Forensics">
+          </a>
+          <h3>Incident Response & Digital Forensics</h3>
+        </div>
+        <div class="card">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="images/coursera-excel.jpg" alt="Coursera Excel">
+          </a>
+          <h3>Coursera Excel</h3>
+        </div>
+        <div class="card">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            <img src="images/cs50x.jpg" alt="CS50x">
+          </a>
+          <h3>CS50x</h3>
+        </div>
+      </div>
+      <button class="slider-btn next-btn" onclick="slideRight()">&#10095;</button>
+    </div>
+  </div>
+</section>
+
+<section id="projects" style="padding: 20px 0;">
+  <div class="projects-section">
+    <h2 class="section-title-center">My Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="card-body">
+          <h3>URL & File Scanner</h3>
+          <p class="project-desc">A simple website that allows users to scan URLs and files to analyze and check if they are safe or dangerous.</p>
+          <div class="tech-stack">
+            <span>Python</span>
+            <span>Streamlit</span>
+          </div>
+        </div>
+        <a href="https://trust-scan.streamlit.app/" target="_blank" rel="noopener noreferrer" class="project-link">View Project &rarr;</a>
+      </div>
+
+      <div class="project-card">
+        <div class="card-body">
+          <h3>Secure Notes Web App</h3>
+          <p class="project-desc">Designed and developed a secure notes platform using Flask and SQL. Implemented authentication, encrypted note storage, email verification, and rate limiting against brute-force attacks.</p>
+          <div class="tech-stack">
+            <span>SQL</span>
+            <span>Flask</span>
+            <span>Encryption</span>
+          </div>
+        </div>
+        <a href="https://mohammedoo1.pythonanywhere.com/" target="_blank" rel="noopener noreferrer" class="project-link">View Project &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact-section">
+  <h2 class="section-title-center">Get In Touch</h2>
+  <form id="contactForm" class="contact-form">
+    <input type="hidden" name="access_key" value="6cb5704e-17c3-48eb-ba16-d5f14fbb3c38">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Your Email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn" id="submitBtn">Send Message</button>
+  </form>
+</section>
+
+<script>
+  const slider = document.querySelector('.cards-slider');
+
+  function slideRight() {
+    slider.scrollBy({ left: 300, behavior: 'smooth' });
+  }
+
+  function slideLeft() {
+    slider.scrollBy({ left: -300, behavior: 'smooth' });
+  }
+
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const originalText = submitBtn.textContent;
+
+      submitBtn.textContent = "Sending...";
+      submitBtn.disabled = true;
+
+      try {
+          const response = await fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              body: formData
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+              alert("Success! Your message has been sent.");
+              form.reset();
+          } else {
+              alert("Error: " + data.message);
+          }
+
+      } catch (error) {
+          alert("Something went wrong. Please try again.");
+      } finally {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+      }
+  });
+</script>
+</body>
+</html>
